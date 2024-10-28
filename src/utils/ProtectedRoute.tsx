@@ -2,13 +2,14 @@ import Navbar from "../components/Navbar";
 import { Navigate, Outlet } from "react-router-dom";
 
 interface ProtectedRouteProps {
-  isAuthenticated: boolean;
+  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean | string>>;
+  isAuthenticated: boolean | string | null;
 }
 
-const ProtectedRoute = ({ isAuthenticated }: ProtectedRouteProps) => {
+const ProtectedRoute = ({ isAuthenticated,setIsAuthenticated }: ProtectedRouteProps) => {
   return isAuthenticated ? (
     <>
-      <Navbar />
+      <Navbar setIsAuthenticated={setIsAuthenticated} />
       <Outlet />
     </>
   ) : (

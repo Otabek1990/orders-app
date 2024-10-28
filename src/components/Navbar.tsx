@@ -1,11 +1,15 @@
 import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-const Navbar = () => {
+interface NavbarProps {
+  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean | string>>;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ setIsAuthenticated }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('isAuthenticated');
+    setIsAuthenticated(false)
     navigate('/login');
   };
 
